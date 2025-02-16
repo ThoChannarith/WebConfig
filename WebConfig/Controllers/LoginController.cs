@@ -15,10 +15,12 @@ namespace WebConfigTesting.Controllers
             int error = 1;
             if (email == "admin@bill24.io" && password == "?7YM)1OgRtr5")
             {
+                HttpContext.Session.SetString("emailId", email);
                 error = 0;
             }
             else
             {
+                HttpContext.Session.SetString("emailId", "");
                 error = 1;
             }
             return Ok(error);

@@ -15,7 +15,15 @@ namespace WebConfig.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("emailId")))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
         }
 
         public IActionResult Privacy()
