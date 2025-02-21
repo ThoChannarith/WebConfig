@@ -13,7 +13,7 @@ namespace WebConfigTesting.Controllers
         public IActionResult Login(string email, string password)
         {
             int error = 1;
-            if (email == "admin@bill24.io" && password == "?7YM)1OgRtr5")
+            if (email == "admin@bill24.io" && password == "123") //?7YM)1OgRtr5
             {
                 HttpContext.Session.SetString("emailId", email);
                 error = 0;

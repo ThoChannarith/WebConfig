@@ -1,8 +1,72 @@
 ﻿@{
+    Layout = null;
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebConfigTesting</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebConfigTesting.styles.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container mt-5" style="margin-top:20%;">
+        
+            <div class="d-flex flex-column align-items-center gap-3">
+
+                <!-- First Button (Navigate to Page1) -->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-outline-primary w-100 p-4" onclick="navigateTo('Page1')">
+                        Activate & Configuration for Banks
+                    </button>
+                </div>
+
+                <!-- Second Button (Navigate to Page2) -->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-outline-success w-100 p-4" onclick="navigateTo('Page2')">
+                        Activate & Configuration for Billers
+                    </button>
+                </div>
+
+                <!-- Dropdown Select Box -->
+                <div class="col-md-6 text-center">
+                    <select class="form-select p-3" id="dropdownEnv">
+                        <option value="0">Select Environment to config</option>
+                        <option value="staging">Staging</option>
+                        <option value="demo">Demo</option>
+                        <option value="production">Production</option>
+                    </select>
+                </div>
+
+                <!-- Alert Message -->
+                <div class="alert alert-warning d-none" id="msg"></div>
+            </div>
+        
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            const dropdown = document.getElementById('dropdownEnv');
+            const msg = document.getElementById('msg');
+
+            if (dropdown.value === "0") {
+                msg.classList.remove('d-none');
+                msg.innerText = "Please choose Environment";
+                setTimeout(() => {
+                    msg.classList.add('d-none');
+                }, 4000);  
+            } else {
+                msg.classList.add('d-none');
+                // Navigate to selected page
+                window.location.href = `@Url.Action("${page}", "Home")`;
+            }
+        }
+    </script>
+</body>
+</html>
